@@ -5,16 +5,20 @@ namespace WebApplication1.App.Web;
 
 internal abstract class HttpPresenterBase< TOut>:IPresenter<TOut>
 {
-    private readonly HttpContext _httpContext;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     protected HttpPresenterBase(IHttpContextAccessor httpContextAccessor)
     {
-        _httpContext = httpContextAccessor.HttpContext;
+        // See https://learn.microsoft.com/en-us/aspnet/core/fundamentals/use-http-context?view=aspnetcore-7.0#httpcontext-isnt-thread-safe
+        //   - Don't capture IHttpContextAccessor.HttpContext in a constructor.
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task Present(TOut output)
     {
-        await MapToResult(output).ExecuteAsync(_httpContext);
+        var httpContext = _httpContextAccessor.HttpContext!;
+
+        await MapToResult(output).ExecuteAsync(httpContext);
     }
 
     protected abstract IResult MapToResult(TOut output);

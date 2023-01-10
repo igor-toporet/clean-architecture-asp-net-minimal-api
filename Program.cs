@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using WebApplication1;
 using WebApplication1.App;
 
@@ -15,10 +16,12 @@ app.Run();
 
 public static class Endpoints
 {
-    public static void AddGreetingEndpointGet(this WebApplication app) =>
-        app.MapGet("/greet/{name}", Handler);
+    public static void AddGreetingEndpointGet(
+        this IEndpointRouteBuilder endpoints
+    ) =>
+        endpoints.MapGet("/greet/{name}", GetGreeting);
 
-    private static async Task Handler(
+    private static async Task GetGreeting(
         string name,
         IGreetUseCase useCase
     )
