@@ -18,21 +18,21 @@ public static class Bootstrap
             ;
 
 
-        //var repositoryAssembly = typeof(IUseCase<>).Assembly;
-
-        //var registrations = (
-        //    // from type in repositoryAssembly.GetTypes()
-        //    from type in repositoryAssembly.GetExportedTypes()
-        //    //where type.Namespace.StartsWith("MyComp.MyProd.DAL")
-        //    from service in type.GetInterfaces()
-        //    // where service.GetGenericTypeDefinition()==typ
-        //    select new { service, implementation = type }
-        //).ToArray();
-
-        //foreach (var reg in registrations)
-        //{
-        //    services.AddTransient(reg.service, reg.implementation);
-        //}
+        // var useCaseAssembly = typeof(IUseCase<>).Assembly;
+        //
+        // var registrations = (
+        //     // from type in repositoryAssembly.GetTypes()
+        //     from type in useCaseAssembly.GetExportedTypes()
+        //     //where type.Namespace.StartsWith("MyComp.MyProd.DAL")
+        //     from service in type.GetInterfaces()
+        //     // where service.GetGenericTypeDefinition()==typ
+        //     select new { service, implementation = type }
+        // ).ToArray();
+        //
+        // foreach (var reg in registrations)
+        // {
+        //     services.AddTransient(reg.service, reg.implementation);
+        // }
 
         return services;
     }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Routing;
 using WebApplication1;
 using WebApplication1.App;
 
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServices();
 
